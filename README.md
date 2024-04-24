@@ -1,7 +1,7 @@
 ## Installation
 
 ```sh
-git clone https://github.com/terowoc/food-app.git
+git clone https://github.com/terowoc/Food_app.git
 ```
 
 ```sh

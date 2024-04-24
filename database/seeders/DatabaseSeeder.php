@@ -20,8 +20,8 @@ class DatabaseSeeder extends Seeder
     {
         MoonshineUser::create([
             'name' => 'Admin',
-            'email' => 'terowoc@mail.ru',
-            'password' => Hash::make('password'),
+            'email' => 'bobojonov3134304@gmail.com',
+            'password' => Hash::make('Meizuu10'),
         ]);
 
         User::factory(2)->create();

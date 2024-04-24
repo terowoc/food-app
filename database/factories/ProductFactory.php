@@ -22,6 +22,7 @@ class ProductFactory extends Factory
             'description' => fake()->paragraph(),
             'image' => '',
             'category_id' => Category::inRandomOrder()->first()->id,
+
         ];
     }
 }

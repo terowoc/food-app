@@ -14,6 +14,9 @@ class Product extends Model
         'description',
         'image',
         'category_id',
+        'video_url',
+        'prep_time',
+        "food_ingredients",
     ];
 
     public function category()

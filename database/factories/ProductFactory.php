@@ -20,9 +20,9 @@ class ProductFactory extends Factory
         return [
             'name' => fake()->word(),
             'description' => fake()->paragraph(),
-            'image' => '',
+            'image' => fake()->imageUrl(),
             'category_id' => Category::inRandomOrder()->first()->id,
-
+            'video_url' => fake()->url(),
         ];
     }
 }

@@ -3,13 +3,12 @@
 namespace Database\Factories;
 
 use App\Models\Product;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Comment>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ProductIngredient>
  */
-class CommentFactory extends Factory
+class ProductIngredientFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,8 +18,7 @@ class CommentFactory extends Factory
     public function definition(): array
     {
         return [
-            'body' => fake()->sentence(),
-            'user_id' => User::inRandomOrder()->first()->id,
+            'text' => fake()->sentence(),
             'product_id' => Product::inRandomOrder()->first()->id,
         ];
     }

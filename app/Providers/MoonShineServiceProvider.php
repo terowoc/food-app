@@ -4,22 +4,25 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use App\Models\User;
+use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Product;
-use App\Models\Category;
-use MoonShine\Menu\MenuItem;
-use App\MoonShine\Resources\UserResource;
-use App\MoonShine\Resources\CommentResource;
-use App\MoonShine\Resources\ProductResource;
+use App\Models\ProductIngredient;
+use App\Models\User;
 use App\MoonShine\Resources\CategoryResource;
+use App\MoonShine\Resources\CommentResource;
+use App\MoonShine\Resources\ProductIngredientResource;
+use App\MoonShine\Resources\ProductResource;
+use App\MoonShine\Resources\UserResource;
+use MoonShine\Menu\MenuItem;
 use MoonShine\Providers\MoonShineApplicationServiceProvider;
 
 class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
 {
     protected function resources(): array
     {
-        return [];
+        return [
+        ];
     }
 
     protected function pages(): array
@@ -38,6 +41,9 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
 
             MenuItem::make('Products', (new ProductResource()))
                 ->badge(fn () => Product::count()),
+
+            MenuItem::make('ProductIngredients', (new ProductIngredientResource()))
+                ->badge(fn () => ProductIngredient::count()),
 
             MenuItem::make('Comments', (new CommentResource()))
                 ->badge(fn () => Comment::count()),

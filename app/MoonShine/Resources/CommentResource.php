@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Resources;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Comment;
-
+use Illuminate\Database\Eloquent\Model;
+use MoonShine\Decorations\Block;
+use MoonShine\Fields\ID;
 use MoonShine\Fields\Relationships\BelongsTo;
 use MoonShine\Fields\Textarea;
 use MoonShine\Resources\ModelResource;
-use MoonShine\Decorations\Block;
-use MoonShine\Fields\ID;
 
 /**
  * @extends ModelResource<Comment>

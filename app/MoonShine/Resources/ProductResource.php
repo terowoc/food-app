@@ -5,18 +5,18 @@ declare(strict_types=1);
 namespace App\MoonShine\Resources;
 
 use App\Models\Product;
-use Illuminate\Database\Eloquent\Model;
-use MoonShine\Decorations\Block;
-use MoonShine\Fields\Checkbox;
 use MoonShine\Fields\ID;
-use MoonShine\Fields\Image;
-use MoonShine\Fields\Relationships\BelongsTo;
-use MoonShine\Fields\Relationships\HasMany;
-use MoonShine\Fields\Textarea;
-use MoonShine\Fields\Text;
 use MoonShine\Fields\Url;
-use MoonShine\Resources\ModelResource;
 use MoonShine\Fields\Json;
+use MoonShine\Fields\Text;
+use MoonShine\Fields\Image;
+use MoonShine\Fields\Checkbox;
+use MoonShine\Fields\Textarea;
+use MoonShine\Decorations\Block;
+use MoonShine\Resources\ModelResource;
+use Illuminate\Database\Eloquent\Model;
+use MoonShine\Fields\Relationships\HasMany;
+use MoonShine\Fields\Relationships\BelongsTo;
 
 
 /**
@@ -30,23 +30,23 @@ class ProductResource extends ModelResource
 
     public string $titleField = 'Name';
 
-//    public static int $itemsPerPage=7;
+    //    public static int $itemsPerPage=7;
     public function fields(): array
     {
         return [
             Block::make([
                 ID::make()->sortable(),
-                Text::make('Name'),
+                Text::make('Name')->required(),
                 Textarea::make('Description'),
                 Image::make('Image'),
-                Url::make('video_url'),
+                Url::make('Video Url'),
                 Text::make('Prep_time'),
-                Json::make('food_ingredients', 'food_ingredients')
+                BelongsTo::make('Category', 'category', fn($item) => $item->name),
+                HasMany::make('Ingredients', 'ingredients', resource: new ProductIngredientResource())
                     ->fields([
-                        Text::make('Title'),
-                    ])->creatable()->removable(),
-                BelongsTo::make('Category', 'category', fn ($item) => $item->name),
-                HasMany::make('Comments', 'comments', fn ($item) => $item->user->name)->hideOnIndex(),
+                        Text::make('Text'),
+                    ])
+                    ->creatable(),
             ]),
         ];
     }

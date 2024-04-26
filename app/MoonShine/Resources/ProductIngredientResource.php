@@ -4,31 +4,30 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Resources;
 
-use App\Models\User;
+use App\Models\ProductIngredient;
 use Illuminate\Database\Eloquent\Model;
 use MoonShine\Decorations\Block;
 use MoonShine\Fields\ID;
-use MoonShine\Fields\Password;
+use MoonShine\Fields\Relationships\BelongsTo;
 use MoonShine\Fields\Text;
 use MoonShine\Resources\ModelResource;
 
 /**
- * @extends ModelResource<User>
+ * @extends ModelResource<ProductIngredient>
  */
-class UserResource extends ModelResource
+class ProductIngredientResource extends ModelResource
 {
-    protected string $model = User::class;
+    protected string $model = ProductIngredient::class;
 
-    protected string $title = 'Users';
+    protected string $title = 'ProductIngredients';
 
     public function fields(): array
     {
         return [
             Block::make([
                 ID::make()->sortable(),
-                Text::make('Name')->sortable(),
-                Text::make('Email')->sortable(),
-                Password::make('Password')->sortable(),
+                Text::make('Text')->sortable(),
+                BelongsTo::make('Product', 'product', fn ($product) => $product->name),
             ]),
         ];
     }
